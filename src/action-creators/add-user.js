@@ -6,3 +6,10 @@ export const openModal=()=> {
         type:actions.OPEN_MODAL
     }
 }
+
+export const closeModal=()=> {
+
+    return  {
+         type:actions.CLOSE_MODAL
+     }
+ }

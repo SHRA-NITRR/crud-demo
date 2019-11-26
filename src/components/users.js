@@ -1,6 +1,6 @@
 import React from 'react';
 import User from './user';
-import AddUserModal from './add-modal';
+import AddUserModal from './add-modal-container';
 
 const Users=(props)=>{
     return(
@@ -28,7 +28,7 @@ const Users=(props)=>{
                     }): <div>{'NO USER FOUND'}</div>}
                 </div>
             </div>
-            <AddUserModal isModalOpen={props.isModalOpen}/>
+            <AddUserModal/>
         </article>
 
     );

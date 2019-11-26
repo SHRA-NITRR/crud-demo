@@ -14,6 +14,11 @@ const addUser = (state = {userList:[], isModalOpen: false}, action) => {
             ...state,
             isModalOpen: true
         }
+        case actions.CLOSE_MODAL:
+        return {
+            ...state,
+            isModalOpen: false
+        }
       default:
         return state
     }
