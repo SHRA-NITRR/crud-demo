@@ -20,3 +20,11 @@
 .App-link {
   color: #09d3ac;
 }
+
+.log-in{
+  max-width: 500px;
+  margin: 50px auto;
+}
+.margin-top-10{
+  margin-top:10px;
+}
