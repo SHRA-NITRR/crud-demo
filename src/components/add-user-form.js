@@ -19,7 +19,7 @@ class AddUserForm extends Component {
             });
         }
       }
-    resetState=(email)=>{
+    resetState=()=>{
         this.setState({
             email:'',
             userName:'',
@@ -28,12 +28,13 @@ class AddUserForm extends Component {
     }
 
     submit=(name, userName, email)=>{
+        
         if(this.props.userToUpdate){
             this.props.updateUser(name, userName, email); 
         } else{
             this.props.addUser(name, userName, email);
         }
-
+        this.resetState();
     }
 
     render() {

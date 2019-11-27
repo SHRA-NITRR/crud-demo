@@ -25,7 +25,8 @@ const addUser = (state = {userList:[], isModalOpen: false, userToUpdate:''}, act
             return {
                 ...state,
                 userList:[...state.userList, action.user],
-                isModalOpen: false
+                isModalOpen: false,
+                userToUpdate:''
             }
         case actions.SET_USET_TO_EDIT:
             return {

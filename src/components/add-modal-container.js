@@ -13,7 +13,8 @@ const mapStateToProps = ({addUser}, ownprops) => {
         }
     }
     return {
-            isModalOpen: addUser.isModalOpen
+            isModalOpen: addUser.isModalOpen,
+            userToUpdate: addUser.userToUpdate
         };
 }
 
