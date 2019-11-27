@@ -18,3 +18,7 @@ html{
 }
 
 .user-item+.user-item { border-top: 1px solid #eee; }
+
+.modal-card-body{
+  text-align: left;
+}

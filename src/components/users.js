@@ -10,7 +10,7 @@ const Users=(props)=>{
             </p>
             <div className="columns">
                 
-                <div className="column margin-top-10">
+                <div className="column margin-add-button">
                     <button className="button is-link is-pulled-right" onClick ={props.openModal}>ADD  USER</button>
                 </div>
             </div>

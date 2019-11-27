@@ -38,6 +38,7 @@ class AddUserForm extends Component {
 
     render() {
       let {name, userName, email} = this.state;
+      const {userToUpdate}=this.props;
           return (
             <div className="column">
                 <div className="field">
@@ -60,6 +61,7 @@ class AddUserForm extends Component {
                         placeholder="Text input" 
                         value={userName}
                         onChange={(e)=>this.setState({userName: e.target.value})}
+                        disabled={Boolean(userToUpdate)}
                     />
                 </div>
             </div>
