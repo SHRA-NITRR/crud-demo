@@ -16,3 +16,5 @@ code {
 html{
   background: #f5f5f5;
 }
+
+.user-item+.user-item { border-top: 1px solid #eee; }

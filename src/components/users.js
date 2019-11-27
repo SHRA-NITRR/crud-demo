@@ -1,5 +1,5 @@
 import React from 'react';
-import User from './user';
+import User from './user-container';
 import AddUserModal from './add-modal-container';
 
 const Users=(props)=>{
@@ -10,9 +10,9 @@ const Users=(props)=>{
             </p>
             <div className="columns">
                 
-            <div className="column margin-top-10">
-                <button className="button is-link is-pulled-right" onClick ={props.openModal}>ADD  USER</button>
-            </div>
+                <div className="column margin-top-10">
+                    <button className="button is-link is-pulled-right" onClick ={props.openModal}>ADD  USER</button>
+                </div>
             </div>
             <div className="card">
                 <div className="card-content">
@@ -22,6 +22,7 @@ const Users=(props)=>{
                         return (
                             <User
                                 name={user.name}
+                                userName={user.userName}
                                 key={user.name}
                             />
                             )

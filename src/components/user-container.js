@@ -1,5 +1,7 @@
 import {connect} from 'react-redux';
 import User from './user';
+import {deleteUser, updateUser, openModalAndSetUserToUpdate} from '../action-creators/add-user';
+
 const mapStateToProps = (state, ownprops) => {    
     return {
         ...ownprops
@@ -8,7 +10,10 @@ const mapStateToProps = (state, ownprops) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        deleteUser:(userName)=> dispatch(deleteUser(userName)),
+        editUser:()=>dispatch(updateUser('name', 'userName', 'email')),
+        openModalAndSetUserToUpdate: (userName)=> dispatch(openModalAndSetUserToUpdate(userName))
     };
 }
 
-export default connect(mapStateToProps)(User);
+export default connect(mapStateToProps, mapDispatchToProps)(User);

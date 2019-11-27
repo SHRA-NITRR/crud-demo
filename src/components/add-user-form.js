@@ -5,79 +5,104 @@ class AddUserForm extends Component {
       super(props);
       this.state = {
           email:'',
-          password:''
+          userName:'',
+          name:''
       };
     }
-  
-    setEmail=(email)=>{
+    componentDidUpdate(prevProps) {
+        const {email, userName, name, userToUpdate}=this.props;
+        if (prevProps.userToUpdate !== userToUpdate) {
+            this.setState({
+                email,
+                userName,
+                name
+            });
+        }
+      }
+    resetState=(email)=>{
         this.setState({
-          email
+            email:'',
+            userName:'',
+            name:''
         })
     }
-    setPassword=(password)=>{
-      this.setState({
-          password
-      })
-  }
-  
-  onSubmit=()=> {
-      let { email, password } = this.state;
-      this.props.login(email, password);
-      this.setState({
-        email: '',
-        password: ''
-      });
+
+    submit=(name, userName, email)=>{
+        if(this.props.userToUpdate){
+            this.props.updateUser(name, userName, email); 
+        } else{
+            this.props.addUser(name, userName, email);
+        }
+
     }
-  
+
     render() {
-      let {email, password} = this.state;
-      let {isLoginPending, isLoginSuccess, loginError} = this.props;
+      let {name, userName, email} = this.state;
           return (
             <div className="column">
                 <div className="field">
                 <label className="label">Name</label>
                 <div className="control">
-                <input className="input" type="text" placeholder="Text input"/>
+                    <input className="input" 
+                        type="text" 
+                        placeholder="Text input"
+                        onChange={(e)=>this.setState({name: e.target.value})}
+                        value={name}
+                    />
                 </div>
             </div>
             
             <div className="field">
                 <label className="label">Username</label>
-                <div className="control has-icons-left has-icons-right">
-                <input className="input is-success" type="text" placeholder="Text input" value="bulma"/>
-                <span className="icon is-small is-left">
-                    <i className="fas fa-user"></i>
-                </span>
-                <span className="icon is-small is-right">
-                    <i className="fas fa-check"></i>
-                </span>
+                <div className="control">
+                    <input className="input" 
+                        type="text" 
+                        placeholder="Text input" 
+                        value={userName}
+                        onChange={(e)=>this.setState({userName: e.target.value})}
+                    />
                 </div>
-                <p className="help is-success">This username is available</p>
             </div>
             
             <div className="field">
                 <label className="label">Email</label>
-                <div className="control has-icons-left has-icons-right">
-                <input className="input is-danger" type="email" placeholder="Email input" value="hello@"/>
-                <span className="icon is-small is-left">
-                    <i className="fas fa-envelope"></i>
-                </span>
-                <span className="icon is-small is-right">
-                    <i className="fas fa-exclamation-triangle"></i>
-                </span>
+                <div className="control">
+                    <input className="input" 
+                        type="email" 
+                        placeholder="Email input" 
+                        value={email}
+                        onChange={(e)=>this.setState({email: e.target.value})}
+                    />
+               
                 </div>
-                <p className="help is-danger">This email is invalid</p>
             </div>
             <div className="field is-grouped">
                 <div className="control">
-                <button className="button is-link">Submit</button>
+                <button 
+                    className="button is-link"
+                    onClick={()=>this.submit(name, userName, email)}
+                >
+                    {'Submit'}
+                </button>
                 </div>
                 <div className="control">
-                <button className="button is-link is-light">Cancel</button>
+                <button 
+                    className='button is-link is-light'
+                    onClick={this.props.closeModal}
+                >
+                    {'Cancel'}
+                </button>
                 </div>
             </div>
           </div>
           );
       }
 }
+
+AddUserForm.defaultProps = {
+    email:'',
+    userName:'',
+    name:''
+}
+
 export default AddUserForm;

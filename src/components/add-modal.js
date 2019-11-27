@@ -2,18 +2,27 @@ import React from 'react';
 import AddUserForm from './add-user-form';
 
 const AddUserModal=(props)=>{
-    const {isModalOpen}=props;
+    const {isModalOpen, email,userName, name, userToUpdate}=props;
     const modalClass=isModalOpen? 'modal is-active': 'modal';
+    const ModalHeader=userToUpdate? 'Update User': 'Add User';
     return(
         <div className={modalClass}>
             <div className="modal-background"></div>
             <div className="modal-card">
                 <header className="modal-card-head">
-                <p className="modal-card-title">Modal title</p>
+                    <p className="modal-card-title">{ModalHeader}</p>
                 <button className="delete" aria-label="close" onClick={props.closeModal}></button>
                 </header>
                 <section className="modal-card-body">
-                  <AddUserForm/>
+                  <AddUserForm 
+                    addUser={props.addUser}
+                    updateUser={props.updateUser}
+                    closeModal={props.closeModal}
+                    email={email}
+                    userName={userName}
+                    name={name}
+                    userToUpdate={userToUpdate}
+                  />
                 </section>
             </div>
         </div>
