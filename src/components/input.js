@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Input =(props)=>{
-    const {mainClass,labelClass,inputContainerClass, inputClass, placeholder, inputType, label, onChange, value, ...rest}=props;
+    const {mainClass,labelClass,inputContainerClass, inputClass, placeholder, inputType, label, onChange, value,message,messageClass, ...rest}=props;
     return(
         <div className={mainClass}>
             <label className={labelClass}>
@@ -16,7 +16,7 @@ const Input =(props)=>{
                     onChange={onChange}
                     {...rest}
                 />
-            
+                {message && <p className={`help ${messageClass}`}>{message}</p>}
             </div>
         </div>
     )
@@ -31,7 +31,9 @@ Input.defaultProps={
     inputType: 'text',
     label: 'Email',
     onChange:()=>null,
-    value: ''
+    value: '',
+    message:'',
+    messageClass:''
 }
 
 export default Input;

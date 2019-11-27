@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Input from './input';
 import Button from "./button";
+import { validateEmail } from "../utility/validate-email";
 
 class AddUserForm extends Component {
     constructor(props) {
@@ -8,7 +9,12 @@ class AddUserForm extends Component {
       this.state = {
           email:'',
           userName:'',
-          name:''
+          name:'',
+          error: {
+            emailValid: true,
+            userNameValid:true,
+            nameValid: true
+        }
       };
     }
     componentDidUpdate(prevProps) {
@@ -20,39 +26,104 @@ class AddUserForm extends Component {
                 name
             });
         }
-      }
+    }
+
     resetState=()=>{
         this.setState({
             email:'',
             userName:'',
-            name:''
+            name:'',
+            error: {
+                emailValid: true,
+                userNameValid:true,
+                nameValid: true
+            }
         })
+    }
+
+    validateBeforeSubmit=(name, userName, email)=>{
+        const error={
+            emailValid: true,
+            userNameValid:true,
+            nameValid: true
+        };
+        if(this.props.userToUpdate==='' && !this.validateUserName(userName)){
+            error.userNameValid=false;
+        }
+        if(!validateEmail(email)){
+            error.emailValid=false;
+        }
+        if(name.length===0){
+            error.nameValid=false;
+        }
+        this.setState({
+            error
+        })
+        
+        return Object.keys(error).every((key)=>error[key]===true)
+
     }
 
     submit=()=>{
         const {name, userName, email}=this.state;
-        if(this.props.userToUpdate){
-            this.props.updateUser(name, userName, email); 
-        } else{
-            this.props.addUser(name, userName, email);
+
+        if(this.validateBeforeSubmit(name, userName, email)){
+            if(this.props.userToUpdate){
+                this.props.updateUser(name, userName, email); 
+            } else{
+                this.props.addUser(name, userName, email);
+            }
+            this.resetState();
         }
-        this.resetState();
     }
     
     setName=(e)=>{
-        this.setState({name: e.target.value});
+        const name=  e.target.value;
+        this.setState({
+            name: e.target.value,
+            error:{
+                ...this.state.error,
+                nameValid: name.length>0
+            }
+        });
+    }
+
+    validateUserName=(userName)=>{
+        return  userName!=='' && !this.props.userList.some((user)=>user.userName===userName);
     }
 
     setUserName=(e)=>{
-        this.setState({userName: e.target.value});
+        const userName=  e.target.value;
+        this.setState({
+            userName: e.target.value,
+            error:{
+                ...this.state.error,
+                userNameValid: this.validateUserName(userName)
+            }
+            
+        });
     }
     
     setEmail=(e)=>{
-        this.setState({email: e.target.value});
+        const email=e.target.value;
+
+        this.setState({
+            email,
+            error:{
+                ...this.state.error,
+                emailValid: validateEmail(email)
+            }
+            
+        });
+    }
+
+    cancel=()=>{
+        this.resetState();
+        this.props.closeModal();
     }
 
     render() {
-      let {name, userName, email} = this.state;
+      let {name, userName, email, error } = this.state;
       const {userToUpdate}=this.props;
           return (
             <div className="column">
@@ -61,6 +132,9 @@ class AddUserForm extends Component {
                     value={name}
                     placeholder={"Text input"}
                     onChange={this.setName}
+                    inputClass={error.nameValid? 'input': 'input is-danger'}
+                    message={error.nameValid? '': 'This Field Is Required!'}
+                    messageClass={'is-danger'}
                 />
                 <Input 
                     label={'Username'}
@@ -68,6 +142,9 @@ class AddUserForm extends Component {
                     placeholder={"Username"}
                     onChange={this.setUserName}
                     disabled={Boolean(userToUpdate)}
+                    inputClass={error.userNameValid || userToUpdate? 'input': 'input is-danger'}
+                    message={error.userNameValid || userToUpdate ? '': 'Invalid UserName or Already Exists!'}
+                    messageClass={'is-danger'}
                 />
 
                 <Input 
@@ -76,6 +153,9 @@ class AddUserForm extends Component {
                     placeholder={"Email"}
                     onChange={this.setEmail}
                     inputType={'email'}
+                    inputClass={error.emailValid? 'input': 'input is-danger'}
+                    message={error.emailValid? '': 'Invalid Email!'}
+                    messageClass={'is-danger'}
                 />
 
                 <div className="field is-grouped">
@@ -86,7 +166,7 @@ class AddUserForm extends Component {
                     />
                     <Button 
                         buttonClass={'button is-link is-light'}
-                        onClick={this.props.closeModal}
+                        onClick={this.cancel}
                         label={'Cancel'}
                     />
             </div>
