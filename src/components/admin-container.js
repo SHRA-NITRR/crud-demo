@@ -14,14 +14,14 @@ class Admin extends Component {
     };
   }
 
-  setEmail=(email)=>{
+  setEmail=(e)=>{
       this.setState({
-        email
+        email: e.target.value
       })
   }
-  setPassword=(password)=>{
+  setPassword=(e)=>{
     this.setState({
-        password
+        password: e.target.value
     })
 }
 

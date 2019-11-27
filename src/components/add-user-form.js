@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import Input from './input';
+import Button from "./button";
 
 class AddUserForm extends Component {
     constructor(props) {
@@ -27,8 +29,8 @@ class AddUserForm extends Component {
         })
     }
 
-    submit=(name, userName, email)=>{
-        
+    submit=()=>{
+        const {name, userName, email}=this.state;
         if(this.props.userToUpdate){
             this.props.updateUser(name, userName, email); 
         } else{
@@ -36,66 +38,57 @@ class AddUserForm extends Component {
         }
         this.resetState();
     }
+    
+    setName=(e)=>{
+        this.setState({name: e.target.value});
+    }
+
+    setUserName=(e)=>{
+        this.setState({userName: e.target.value});
+    }
+    
+    setEmail=(e)=>{
+        this.setState({email: e.target.value});
+    }
 
     render() {
       let {name, userName, email} = this.state;
       const {userToUpdate}=this.props;
           return (
             <div className="column">
-                <div className="field">
-                <label className="label">Name</label>
-                <div className="control">
-                    <input className="input" 
-                        type="text" 
-                        placeholder="Text input"
-                        onChange={(e)=>this.setState({name: e.target.value})}
-                        value={name}
+                <Input 
+                    label={'Name'}
+                    value={name}
+                    placeholder={"Text input"}
+                    onChange={this.setName}
+                />
+                <Input 
+                    label={'Username'}
+                    value={userName}
+                    placeholder={"Username"}
+                    onChange={this.setUserName}
+                    disabled={Boolean(userToUpdate)}
+                />
+
+                <Input 
+                    label={'Email'}
+                    value={email}
+                    placeholder={"Email"}
+                    onChange={this.setEmail}
+                    inputType={'email'}
+                />
+
+                <div className="field is-grouped">
+                    <Button 
+                        buttonClass={'button is-link'}
+                        onClick={this.submit}
+                        label={'Submit'}
                     />
-                </div>
-            </div>
-            
-            <div className="field">
-                <label className="label">Username</label>
-                <div className="control">
-                    <input className="input" 
-                        type="text" 
-                        placeholder="Text input" 
-                        value={userName}
-                        onChange={(e)=>this.setState({userName: e.target.value})}
-                        disabled={Boolean(userToUpdate)}
+                    <Button 
+                        buttonClass={'button is-link is-light'}
+                        onClick={this.props.closeModal}
+                        label={'Cancel'}
                     />
-                </div>
-            </div>
-            
-            <div className="field">
-                <label className="label">Email</label>
-                <div className="control">
-                    <input className="input" 
-                        type="email" 
-                        placeholder="Email input" 
-                        value={email}
-                        onChange={(e)=>this.setState({email: e.target.value})}
-                    />
-               
-                </div>
-            </div>
-            <div className="field is-grouped">
-                <div className="control">
-                <button 
-                    className="button is-link"
-                    onClick={()=>this.submit(name, userName, email)}
-                >
-                    {'Submit'}
-                </button>
-                </div>
-                <div className="control">
-                <button 
-                    className='button is-link is-light'
-                    onClick={this.props.closeModal}
-                >
-                    {'Cancel'}
-                </button>
-                </div>
             </div>
           </div>
           );

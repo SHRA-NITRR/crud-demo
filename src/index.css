@@ -22,3 +22,14 @@ html{
 .modal-card-body{
   text-align: left;
 }
+.card-content{
+  text-align: left;
+}
+
+.media .media-content{
+  text-align: center;
+}
+
+.user-item .media .media-content{
+  text-align: left;
+}
