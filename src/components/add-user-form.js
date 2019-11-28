@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from "prop-types";
 import Input from './common/input';
 import Button from "./common/button";
 import { validateEmail } from "../utility/validate-email";
@@ -180,5 +181,13 @@ AddUserForm.defaultProps = {
     userName:'',
     name:''
 }
+
+AddUserForm.propTypes = {
+    closeModal: PropTypes.func.isRequired,
+    email: PropTypes.string,
+    userName: PropTypes.string,
+    name: PropTypes.string,
+    userToUpdate: PropTypes.string
+};
 
 export default AddUserForm;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from "prop-types";
 
 const User=(props)=>{
     return(
@@ -35,5 +36,11 @@ const User=(props)=>{
         </div>
     )
 }
+
+User.propTypes = {
+    openModalAndSetUserToUpdate: PropTypes.func.isRequired,
+    deleteUser: PropTypes.func.isRequired,
+    name: PropTypes.string.isRequired,
+};
 
 export default User;

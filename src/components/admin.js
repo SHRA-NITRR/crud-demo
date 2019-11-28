@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from "prop-types";
 import  Loginpage from '../components/login';
 import Users from '../components/users';
 
@@ -33,7 +34,7 @@ onSubmit=()=> {
 
   render() {
     let {email, password} = this.state;
-    let {isLoginPending, isLoginSuccess, loginError} = this.props;
+    let {isLoginSuccess} = this.props;
     if(isLoginSuccess){
         return (
             <Users 
@@ -57,5 +58,12 @@ onSubmit=()=> {
     }
   }
 }
+
+Admin.propTypes = {
+    isModalOpen: PropTypes.bool.isRequired,
+    openModal: PropTypes.func.isRequired,
+    isLoginSuccess: PropTypes.bool.isRequired,
+    userList: PropTypes.array.isRequired
+};
 
 export default Admin;

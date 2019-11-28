@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from "prop-types";
 
 const Input =(props)=>{
     const {mainClass,labelClass,inputContainerClass, inputClass, placeholder, inputType, label, onChange, value,message,messageClass, ...rest}=props;
@@ -35,5 +36,20 @@ Input.defaultProps={
     message:'',
     messageClass:''
 }
+
+Input.propTypes = {
+    mainClass: PropTypes.string,
+    mainClass: PropTypes.string,
+    labelClass: PropTypes.string,
+    inputContainerClass:PropTypes.string,
+    inputClass: PropTypes.string,
+    placeholder: PropTypes.string,
+    inputType: PropTypes.string,
+    label: PropTypes.string,
+    onChange: PropTypes.func,
+    value: PropTypes.string,
+    message:PropTypes.string,
+    messageClass:PropTypes.string
+};
 
 export default Input;

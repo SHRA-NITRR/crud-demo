@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from "prop-types";
 import Input from './common/input';
 import Button from "./common/button";
-const LoginPage=(props)=>{
 
+const LoginPage=(props)=>{
     return(
         <div className="card log-in">
             <div className="card-content">
@@ -33,5 +34,13 @@ const LoginPage=(props)=>{
         </div>
     )
 }
+
+LoginPage.propTypes = {
+    onSubmit: PropTypes.func.isRequired,
+    setPassword: PropTypes.func.isRequired,
+    setEmail: PropTypes.func.isRequired,
+    email:PropTypes.string.isRequired,
+    password:PropTypes.string.isRequired,
+};
 
 export default LoginPage;
