@@ -5,11 +5,20 @@ const User=(props)=>{
     return(
         <div className="columns user-item">
             <div className="column is-10">
-                <div className="media">
-                    <div className="media-content">
-                        <p className="title is-4">
-                            {props.name}
-                        </p>
+                <div className="columns">
+                    <div className="column">
+                        <div className="media">
+                            <div className="media-content">
+                                <p className="title is-4">
+                                    {props.name}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="column">
+                        <span className="title  is-6">
+                            {props.role}
+                        </span>
                     </div>
                 </div>
             </div>

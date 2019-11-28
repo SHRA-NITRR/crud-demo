@@ -28,6 +28,7 @@ const Users=(props)=>{
                         return (
                             <User
                                 name={user.name}
+                                role={user.role}
                                 userName={user.userName}
                                 key={user.name}
                             />
