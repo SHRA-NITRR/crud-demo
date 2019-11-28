@@ -7,7 +7,7 @@ const mapStateToProps = ({addUser}, ownprops) => {
     const userObjectToUpdate = addUser.userList.find( ({ userName }) => userName === addUser.userToUpdate ); 
     if(userObjectToUpdate){
         return {
-           ... userObjectToUpdate,
+           ...userObjectToUpdate,
            isModalOpen: addUser.isModalOpen,
            userToUpdate: addUser.userToUpdate,
            userList: addUser.userList

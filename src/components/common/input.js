@@ -39,7 +39,6 @@ Input.defaultProps={
 
 Input.propTypes = {
     mainClass: PropTypes.string,
-    mainClass: PropTypes.string,
     labelClass: PropTypes.string,
     inputContainerClass:PropTypes.string,
     inputClass: PropTypes.string,
