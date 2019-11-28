@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import AddUserModal from './add-modal';
+import AddUserModal from '../components/add-modal';
 import {closeModal, addUser, updateUser} from '../action-creators/add-user';
 
 

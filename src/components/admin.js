@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import  Loginpage from './login';
-import {login} from '../action-creators/login';
-import {openModal} from '../action-creators/add-user';
-import {connect} from 'react-redux';
-import Users from './users';
+import  Loginpage from '../components/login';
+import Users from '../components/users';
 
 class Admin extends Component {
   constructor(props) {
@@ -61,21 +58,4 @@ onSubmit=()=> {
   }
 }
 
-const mapStateToProps = (state) => {    
-  return {
-    isLoginPending: state.isLoginPending,
-    isLoginSuccess: state.logIn.isLoginSuccess,
-    loginError: state.logIn.loginError,
-    userList: state.addUser.userList,
-    isModalOpen: state.addUser.isModalOpen
-  };
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    login: (email, password) => dispatch(login(email, password)),
-    openModal: () => dispatch(openModal())
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Admin);
+export default Admin;

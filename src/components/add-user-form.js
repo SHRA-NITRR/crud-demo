@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import Input from './input';
-import Button from "./button";
+import Input from './common/input';
+import Button from "./common/button";
 import { validateEmail } from "../utility/validate-email";
 
 class AddUserForm extends Component {

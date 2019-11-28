@@ -1,6 +1,6 @@
 import React from 'react';
-import User from './user-container';
-import AddUserModal from './add-modal-container';
+import User from '../containers/user-container';
+import AddUserModal from '../containers/add-modal-container';
 
 const Users=(props)=>{
     return(

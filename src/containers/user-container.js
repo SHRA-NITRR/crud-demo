@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import User from './user';
+import User from '../components/user';
 import {deleteUser, updateUser, openModalAndSetUserToUpdate} from '../action-creators/add-user';
 
 const mapStateToProps = (state, ownprops) => {    

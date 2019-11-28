@@ -1,6 +1,6 @@
 import React from 'react';
-import Input from './input';
-import Button from "./button";
+import Input from './common/input';
+import Button from "./common/button";
 const LoginPage=(props)=>{
 
     return(
