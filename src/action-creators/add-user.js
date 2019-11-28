@@ -14,13 +14,14 @@ export const closeModal=()=> {
      }
  }
 
- export const addUser=(name, userName, email)=> {
+ export const addUser=(name, userName, email, role)=> {
     return  {
          type:actions.ADD_USER,
          user:{
              name,
              userName,
-             email
+             email,
+             role
         }
      }
  }
@@ -32,12 +33,13 @@ export const openModalAndSetUserToUpdate=(userName)=> {
      }
  }
 
- export const updateUser=(name, userName, email)=> {
+ export const updateUser=(name, userName, email, role)=> {
     return  {
          type:actions.UPDATE_USER,
          name,
          userName,
-         email
+         email, 
+         role
         }
 }
  

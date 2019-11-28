@@ -2,7 +2,9 @@ import React, {Component} from 'react';
 import PropTypes from "prop-types";
 import Input from './common/input';
 import Button from "./common/button";
+import Select from "../components/common/select";
 import { validateEmail } from "../utility/validate-email";
+import { userRoles } from "../constants";
 
 class AddUserForm extends Component {
     constructor(props) {
@@ -11,13 +13,31 @@ class AddUserForm extends Component {
           email:'',
           userName:'',
           name:'',
+          role: '',
+          isModalOpen: true,
           error: {
             emailValid: true,
             userNameValid:true,
-            nameValid: true
+            nameValid: true,
+            roleValid: true
         }
       };
     }
+
+    static getDerivedStateFromProps(nextProps, prevState){
+        if(nextProps.isModalOpen!==prevState.isModalOpen){
+            return {
+                error: {
+                    emailValid: true,
+                    userNameValid:true,
+                    nameValid: true,
+                    roleValid: true
+                }
+            }
+        }
+        return null;
+    }
+
     componentDidUpdate(prevProps) {
         const {email, userName, name, userToUpdate}=this.props;
         if (prevProps.userToUpdate !== userToUpdate) {
@@ -34,19 +54,22 @@ class AddUserForm extends Component {
             email:'',
             userName:'',
             name:'',
+            role: '',
             error: {
                 emailValid: true,
                 userNameValid:true,
-                nameValid: true
+                nameValid: true,
+                roleValid: true
             }
         })
     }
 
-    validateBeforeSubmit=(name, userName, email)=>{
+    validateBeforeSubmit=(name, userName, email, roleValid)=>{
         const error={
             emailValid: true,
             userNameValid:true,
-            nameValid: true
+            nameValid: true,
+            roleValid: true
         };
         if(this.props.userToUpdate==='' && !this.validateUserName(userName)){
             error.userNameValid=false;
@@ -57,6 +80,9 @@ class AddUserForm extends Component {
         if(name.length===0){
             error.nameValid=false;
         }
+        if(roleValid.length===0){
+            error.roleValid=false;
+        }
         this.setState({
             error
         })
@@ -66,13 +92,13 @@ class AddUserForm extends Component {
     }
 
     submit=()=>{
-        const {name, userName, email}=this.state;
+        const {name, userName, email, role}=this.state;
 
-        if(this.validateBeforeSubmit(name, userName, email)){
+        if(this.validateBeforeSubmit(name, userName, email, role)){
             if(this.props.userToUpdate){
-                this.props.updateUser(name, userName, email); 
+                this.props.updateUser(name, userName, email, role); 
             } else{
-                this.props.addUser(name, userName, email);
+                this.props.addUser(name, userName, email, role);
             }
             this.resetState();
         }
@@ -117,14 +143,19 @@ class AddUserForm extends Component {
             
         });
     }
-
+    setRole=(role)=>{
+        this.setState({
+            role 
+        });
+    }
     cancel=()=>{
         this.resetState();
         this.props.closeModal();
     }
 
     render() {
-      let {name, userName, email, error } = this.state;
+      let {name, userName, email, error, role } = this.state;
+      
       const {userToUpdate}=this.props;
           return (
             <div className="column">
@@ -137,6 +168,18 @@ class AddUserForm extends Component {
                     message={error.nameValid? '': 'This Field Is Required!'}
                     messageClass={'is-danger'}
                 />
+                <Select
+                    selectPlaceholder={'--- Select a Role ---'}
+                    selectOptions={userRoles}
+                    handleSelect={this.setRole}
+                    selectedValue={role}
+                    label={'Role'}
+                    selectClass={error.roleValid? 'select': 'select is-danger'}
+                    message={error.roleValid? '': 'Select a valid role'}
+                    messageClass={'is-danger'}
+
+                />
+
                 <Input 
                     label={'Username'}
                     value={userName}

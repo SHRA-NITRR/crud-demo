@@ -24,6 +24,7 @@ const AddUserModal=(props)=>{
                     name={name}
                     userToUpdate={userToUpdate}
                     userList={props.userList}
+                    isModalOpen={isModalOpen}
                   />
                 </section>
             </div>

@@ -23,8 +23,8 @@ const mapStateToProps = ({addUser}, ownprops) => {
 const mapDispatchToProps = (dispatch) => {
     return {
       closeModal: () => dispatch(closeModal()),
-      addUser: (name, userName, email)=> dispatch(addUser(name, userName, email)),
-      updateUser: (name, userName, email)=> dispatch(updateUser(name, userName, email))
+      addUser: (name, userName, email, role)=> dispatch(addUser(name, userName, email, role)),
+      updateUser: (name, userName, email, role)=> dispatch(updateUser(name, userName, email, role))
     };
 }
 
