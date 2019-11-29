@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  height: 100vh;
 }
 
 .App-logo {
@@ -23,11 +24,17 @@
 
 .card.log-in{
   max-width: 500px;
-  margin: 50px auto;
+  margin: auto;
+  top: 50px;
 }
 .margin-add-button{
-  margin: 10px 24px 0 0;
+  margin: .75rem 1rem 0px;
 }
 .align-right{
-  text-align: right;;
+  text-align: right;
+  margin-right: -.75rem;
+}
+
+html{
+  background-color: #eee;
 }

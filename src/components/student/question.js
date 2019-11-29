@@ -9,11 +9,11 @@ const Question =(props)=>{
     }
 
     return (
-        <li className="columns user-item">
-            <p>
+        <li className="questions">
+            <div className='question-statement'>
              {question.questionStatement}
-            </p>
-            <div className="control">
+            </div>
+            <div className="control answer-items">
                 {question.answerOptions.map((answerOption)=>{
                     return(
                         <Radio

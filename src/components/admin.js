@@ -5,7 +5,7 @@ import Users from '../components/users';
 import StudentDashboard  from "../containers/student-dashboard-container";
 import Button from "../components/common/button";
 import TeacherDashboard from '../containers/teacher-dashboard-container';
-
+import Header  from "../components/common/header";
 class Admin extends Component {
   constructor(props) {
     super(props);
@@ -50,12 +50,9 @@ onSubmit=()=> {
     if(isLoginSuccess){
         return (
           <div>
-             <Button 
-                    className="button is-danger"
-                    onClick={this.props.logOut}
-                    label={'LOGOUT'}
-                    mainClass={'contral align-right'}
-              />
+            <Header 
+                logOut={this.props.logOut}
+            />
             {components[loggedInUserRole]}
           </div>
         

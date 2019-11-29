@@ -5,7 +5,7 @@ import AddUserModal from '../containers/add-modal-container';
 
 const Users=(props)=>{
     return(
-        <article className="panel is-primary">
+        <article className="panel is-primary users-panel">
             <p className="panel-heading">
              {'Users'}
             </p>

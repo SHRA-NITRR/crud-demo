@@ -12,13 +12,16 @@ const calculateMarks=(userAnswer)=>{
 }
 
 export const evaluateAnswer=(userAnswer)=> {
-
     return (dispatch, getState)=>{
+        const marks=calculateMarks(userAnswer);
+
+        window.alert(`you got ${marks} out of 40.`)
+
         dispatch(
             {
                 type:actions.EVALUATE_ANSWERS,
                 userName: getState().logIn.loggedInUser,
-                marks: calculateMarks(userAnswer)
+                marks
             }
         );
     }

@@ -13,7 +13,7 @@ class StudentDashboard extends Component {
         <section className="section">
             <div className='container'>
                 <div className="columns">
-                    <div className="column">
+                    <div className="column question-container">
                         <Questions
                             questions={questions}
                             evaluateAnswer={this.props.evaluateAnswer}

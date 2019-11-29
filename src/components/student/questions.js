@@ -15,24 +15,26 @@ const Questions =(props)=>{
     const evaluate=()=>{
         props.evaluateAnswer(answers);
     }
-        
+
     return (
         <React.Fragment>
-            <ul className="questions">
-                {questions.map((question)=>{
-                    return(
-                        <Question
-                            key={question.id}
-                            questionId={question.id}
-                            handleselect={setUserAnswer}
-                            question={question}
-                            selectedAnsID={answers[question.id]}
-                        />
-                    )
-                })}
-            </ul>
+            <div className="content">
+                <ol type="1">
+                    {questions.map((question)=>{
+                        return(
+                            <Question
+                                key={question.id}
+                                questionId={question.id}
+                                handleselect={setUserAnswer}
+                                question={question}
+                                selectedAnsID={answers[question.id]}
+                            />
+                        )
+                    })}
+                </ol>
+            </div>
             <Button 
-                buttonClass={"button is-success"}
+                buttonClass={"button is-success is-pulled-right"}
                 onClick={evaluate}
                 label={'Submit'}
             />
