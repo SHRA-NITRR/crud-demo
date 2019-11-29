@@ -21,10 +21,13 @@
   color: #09d3ac;
 }
 
-.log-in{
+.card.log-in{
   max-width: 500px;
   margin: 50px auto;
 }
 .margin-add-button{
   margin: 10px 24px 0 0;
+}
+.align-right{
+  text-align: right;;
 }

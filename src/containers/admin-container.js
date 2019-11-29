@@ -1,4 +1,4 @@
-import {login} from '../action-creators/login';
+import {login, logOut} from '../action-creators/login';
 import {openModal} from '../action-creators/add-user';
 import {connect} from 'react-redux';
 import Admin from "../components/admin";
@@ -9,13 +9,15 @@ const mapStateToProps = (state) => {
     isLoginSuccess: state.logIn.isLoginSuccess,
     loginError: state.logIn.loginError,
     userList: state.addUser.userList,
-    isModalOpen: state.addUser.isModalOpen
+    isModalOpen: state.addUser.isModalOpen,
+    loggedInUserRole: state.logIn.loggedInUserRole
   };
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     login: (email, password) => dispatch(login(email, password)),
+    logOut: () => dispatch(logOut()),
     openModal: () => dispatch(openModal())
   };
 }

@@ -6,3 +6,5 @@ export const CLOSE_MODAL='CLOSE_MODAL';
 export const DELETE_USER='DELETE_USER';
 export const UPDATE_USER='UPDATE_USER';
 export const SET_USET_TO_EDIT='SET_USET_TO_EDIT';
+export const EVALUATE_ANSWERS='EVALUATE_ANSWERS';
+export const LOG_OUT='LOG_OUT';

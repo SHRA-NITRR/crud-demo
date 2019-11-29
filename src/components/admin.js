@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from "prop-types";
 import  Loginpage from '../components/login';
 import Users from '../components/users';
+import StudentDashboard  from "../containers/student-dashboard-container";
+import Button from "../components/common/button";
+import TeacherDashboard from '../containers/teacher-dashboard-container';
 
 class Admin extends Component {
   constructor(props) {
@@ -33,15 +36,28 @@ onSubmit=()=> {
   }
 
   render() {
+    const components={
+      ADMIN: <Users 
+              users={this.props.userList}
+              openModal={this.props.openModal}
+              isModalOpen={this.props.isModalOpen}
+             />,
+      TEACHER: <TeacherDashboard/>,
+      STUDENT: <StudentDashboard/>
+    }
     let {email, password} = this.state;
-    let {isLoginSuccess} = this.props;
+    let {isLoginSuccess, loggedInUserRole} = this.props;
     if(isLoginSuccess){
         return (
-            <Users 
-                users={this.props.userList}
-                openModal={this.props.openModal}
-                isModalOpen={this.props.isModalOpen}
-            />
+          <div>
+             <Button 
+                    className="button is-danger"
+                    onClick={this.props.logOut}
+                    label={'LOGOUT'}
+                    mainClass={'contral align-right'}
+              />
+            {components[loggedInUserRole]}
+          </div>
         
         )
     }else{
