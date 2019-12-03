@@ -5,7 +5,6 @@ import Admin from "../components/admin";
 
 const mapStateToProps = (state) => {    
   return {
-    isLoginPending: state.isLoginPending,
     isLoginSuccess: state.logIn.isLoginSuccess,
     loginError: state.logIn.loginError,
     userList: state.addUser.userList,

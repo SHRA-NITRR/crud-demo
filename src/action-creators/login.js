@@ -15,7 +15,7 @@ const findRole=(userName, password, userList)=>{
 
 export const login=(email, password)=> { 
     return (dispatch, getState)=>{
-        console.log(getState().addUser.userList);
+
         const userList=getState().addUser.userList;
         
         const role= findRole(email, password, userList); 
@@ -29,7 +29,6 @@ export const login=(email, password)=> {
         else{
             dispatch({
                 type: actions.LOG_IN_ERROR,
-                email
             })
         }
     }

@@ -15,7 +15,7 @@ const defaultState=()=>{
     loggedInUserRole: ''
 }
 }
-export const logIn = (state = {isLoginSuccess:false}, action) =>{
+export const logIn = (state = defaultState(), action) =>{
     const actionHandlers = {
         [actions.LOG_IN]: getLoggedIn,
         [actions.LOG_OUT]: defaultState
