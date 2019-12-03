@@ -1,20 +1,20 @@
 import React from 'react';
-import PropTypes from "prop-types";
 
-const RadioButton = (props) => {    
-    return (
-        <label className="radio">
-             <input 
-                id={props.id} 
-                onChange={props.handleOnchange}
-                value={props.value} 
-                type="radio" 
-                checked={props.isSelected} 
-            />
-            {props.label}
-        </label>
-
-    );
-}
+const RadioButton = props => {
+  const { handleOnchange, value, isSelected, label, id } = props;
+  return (
+    // eslint-disable-next-line jsx-a11y/label-has-associated-control
+    <label className="radio">
+      <input
+        id={id}
+        onChange={handleOnchange}
+        value={value}
+        type="radio"
+        checked={isSelected}
+      />
+      {label}
+    </label>
+  );
+};
 
 export default RadioButton;
